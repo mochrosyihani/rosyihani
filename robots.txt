@@ -10,4 +10,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://mochrosyihani.github.io/sitemap.xml
+Sitemap: https://mochrosyihani.github.io/rosyihani/sitemap.xml
