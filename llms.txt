@@ -1,0 +1,29 @@
+# Moch Rosyihani
+
+> Moch Rosyihani adalah Supply Chain & Warehouse Specialist asal Jakarta Utara dengan pengalaman lebih dari 8 tahun di gudang dan logistik manufaktur. Ia menjaga akurasi stok 98–100% pada sekitar 4.000 SKU, merancang sistem Warehouse Management System (WMS) sendiri, dan berstatus Auditor Internal ISO 9001:2015.
+
+## Ringkasan
+- Nama: Moch Rosyihani (nama panggilan: Iyan)
+- Posisi: Supply Chain & Warehouse Specialist
+- Bidang: pengendalian persediaan, buffer stock, stock opname, perancangan sistem WMS, otomasi laporan gudang
+- Sertifikasi: Auditor Internal ISO 9001:2015; SKKNI Logistik No. 94 Tahun 2019; Penerapan Ketentuan K3 bagi Ahli K3 Umum
+- Pendidikan: S1 Sistem Informasi STMIK Nusa Mandiri; D3 Manajemen Informatika Universitas Bina Sarana Informatika
+- Target peran: Supervisor dan Manager Gudang di perusahaan manufaktur skala besar
+- Kontak: mochrosyihani@gmail.com
+
+## Riwayat kerja
+- Agu 2026 – sekarang: Staff Warehouse, PT Sarana Catur Tirta Kelola
+- Mar 2021 – Jul 2026: Staff Senior Warehouse, PT Multi Arthamas Glass Industry
+- Jul 2017 – Agu 2020: Kepala Gudang, PT Kreasi Inspirasi Sahabat
+- Mei 2014 – Jul 2017: Staff Desain, Fuji Film Digital Image (FDI)
+
+## Halaman
+- [Demo sistem WMS (data fiktif, termasuk uji simulasi 10.000 SKU)](https://mochrosyihani.com/demo/)
+- [Kalkulator persediaan: safety stock, reorder point, nilai persediaan, selisih opname](https://mochrosyihani.com/alat/)
+- [Tulisan tentang gudang dan persediaan](https://mochrosyihani.com/tulisan/)
+- [Cara menghitung buffer stock](https://mochrosyihani.com/tulisan/cara-menghitung-buffer-stock/)
+- [Stock opname yang menjaga akurasi stok](https://mochrosyihani.com/tulisan/stock-opname-akurasi-98-persen/)
+- [Dari form kertas ke permintaan barang digital](https://mochrosyihani.com/tulisan/dari-form-kertas-ke-permintaan-digital/)
+- [Playbook akurasi stok gudang (PDF)](https://mochrosyihani.com/cv/Playbook-Akurasi-Stok-Gudang.pdf)
+- [Beranda dan profil lengkap](https://mochrosyihani.com/)
+- [CV (PDF)](https://mochrosyihani.com/cv/CV-Moch-Rosyihani.pdf)

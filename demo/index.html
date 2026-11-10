@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Sistem WMS (data fiktif) – Moch Rosyihani</title>
+<meta name="description" content="Demo dashboard WMS dengan data fiktif: tren barang keluar-masuk, pantauan buffer stock, pencarian barang, dan uji simulasi 10.000 SKU langsung di browser.">
+<link rel="canonical" href="https://mochrosyihani.com/demo/">
+<meta name="theme-color" content="#0F2540">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="id_ID">
+<meta property="og:site_name" content="Moch Rosyihani">
+<meta property="og:title" content="Demo Sistem WMS (data fiktif) – Moch Rosyihani">
+<meta property="og:description" content="Demo dashboard WMS dengan data fiktif: tren barang keluar-masuk, pantauan buffer stock, pencarian barang, dan uji simulasi 10.000 SKU langsung di browser.">
+<meta property="og:url" content="https://mochrosyihani.com/demo/">
+<meta property="og:image" content="https://mochrosyihani.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/halaman.css">
+
+</head>
+<body>
+<a class="lewati" href="#isi">Lewati ke isi</a>
+<header class="bar" id="atas">
+  <a class="monogram" href="../index.html" aria-label="Moch Rosyihani, beranda">MR</a>
+  <button class="menu-tombol" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  <nav id="menu" class="menu" aria-label="Navigasi utama">
+    <a href="../index.html#tentang">Tentang</a>
+    <a href="../index.html#perjalanan">Perjalanan</a>
+    <a href="../demo/">Demo WMS</a>
+    <a href="../alat/">Kalkulator</a>
+    <a href="../tulisan/">Tulisan</a>
+    <a href="../index.html#kontak" class="menu-kontak">Kontak</a>
+  </nav>
+</header>
+<main id="isi">
+
+<div class="bungkus">
+  <section class="judul-halaman">
+    <p class="remah"><a href="../index.html">Beranda</a> / Demo WMS</p>
+    <h1>Demo sistem WMS dengan data fiktif</h1>
+    <p class="sub">Tampilan dan cara kerja sistem gudang yang saya rancang: dashboard, pantauan buffer stock, dan pencarian barang. Semua angka di halaman ini fiktif dan dibuat acak di browser Anda.</p>
+  </section>
+
+  <p class="pita"><strong>Catatan:</strong> halaman ini adalah peragaan. Nama barang, jumlah, dan transaksi dibuat acak oleh program, tidak berasal dari perusahaan mana pun.</p>
+
+  <div class="kpi" id="kpi" aria-label="Ringkasan">
+    <div><b id="k-sku">–</b><span>SKU terpantau</span></div>
+    <div><b id="k-bawah">–</b><span>SKU di bawah buffer</span></div>
+    <div><b id="k-hampir">–</b><span>SKU mendekati buffer</span></div>
+    <div><b id="k-akurasi">–</b><span>Akurasi opname terakhir (fiktif)</span></div>
+  </div>
+
+  <section class="panel" aria-labelledby="h-tren">
+    <h2 id="h-tren">Tren barang keluar dan masuk</h2>
+    <p class="ket">Total unit per minggu selama 12 minggu terakhir. Pergerakan terlihat dalam satu layar, sehingga keputusan pengadaan memakai data.</p>
+    <svg id="grafik" class="grafik" viewBox="0 0 800 280" role="img" aria-label="Grafik garis tren barang keluar dan masuk per minggu"></svg>
+    <div class="legenda"><span><i style="background:#0F2540"></i>Barang keluar</span><span><i style="background:#2A7A8A"></i>Barang masuk</span></div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-buffer">
+    <h2 id="h-buffer">Pantauan buffer stock dan pencarian barang</h2>
+    <p class="ket">Cari barang berdasarkan kode atau nama. Status dihitung otomatis dari stok, batas buffer, dan rata-rata pemakaian per hari.</p>
+    <div class="alat-bar">
+      <div><label for="cari">Cari barang</label><input id="cari" type="search" placeholder="Contoh: bearing 6204" autocomplete="off"></div>
+      <div><label for="saring">Status</label>
+        <select id="saring"><option value="">Semua</option><option value="bawah">Di bawah buffer</option><option value="hampir">Mendekati buffer</option><option value="aman">Aman</option></select></div>
+      <p id="info-cari" class="ket" style="margin:0 0 6px" aria-live="polite"></p>
+    </div>
+    <div class="tabel-bungkus"><table class="data" id="tabel">
+      <thead><tr><th>Kode</th><th>Nama barang</th><th class="n">Stok</th><th class="n">Buffer</th><th class="n">Pakai/hari</th><th class="n">Cukup untuk</th><th>Status</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <div class="halaman-tabel">
+      <span id="hal-info"></span>
+      <span><button type="button" class="tombol-kecil" id="prev">Sebelumnya</button> <button type="button" class="tombol-kecil" id="next">Berikutnya</button></span>
+    </div>
+  </section>
+
+  <section class="ukur" aria-labelledby="h-uji">
+    <h2 id="h-uji">Uji simulasi 10.000 SKU</h2>
+    <p>Klik tombol untuk menjalankan uji langsung di perangkat Anda: membuat 10.000 SKU, menghitung status buffer semuanya, lalu melakukan 1.000 pencarian acak. Hasilnya menunjukkan bahwa rancangan data dan pencarian tetap cepat pada skala 10.000 SKU.</p>
+    <button type="button" class="tombol-kecil" id="jalankan">Jalankan uji</button>
+    <dl id="hasil-uji" hidden>
+      <div><dt>Buat 10.000 SKU</dt><dd id="u-buat">–</dd></div>
+      <div><dt>Hitung status semua SKU</dt><dd id="u-status">–</dd></div>
+      <div><dt>Rata-rata satu pencarian</dt><dd id="u-cari">–</dd></div>
+      <div><dt>Total 1.000 pencarian</dt><dd id="u-total">–</dd></div>
+    </dl>
+    <p class="catat" id="u-cat" hidden></p>
+  </section>
+
+  <section class="blok" aria-labelledby="h-fitur" style="margin-top:44px">
+    <div class="blok-judul">
+      <h2 id="h-fitur">Yang tidak terlihat di demo ini</h2>
+      <div class="isi-teks"><p>Di sistem aslinya ada form permintaan barang digital dengan persetujuan atasan lewat tautan (stok langsung terpotong), stock opname harian dengan scan barcode, serta laporan buffer stock otomatis. Bagian itu bekerja dengan data nyata perusahaan, sehingga tidak ditampilkan di sini. Untuk melihat cara hitung di balik pantauan buffer, coba <a href="../alat/">kalkulator persediaan</a>.</p></div>
+    </div>
+  </section>
+</div>
+</main>
+<footer class="kaki-halaman">
+  <div class="bungkus">
+    <p><a href="../index.html">Moch Rosyihani</a>, Supply Chain &amp; Warehouse Specialist. <a href="mailto:mochrosyihani@gmail.com">mochrosyihani@gmail.com</a></p>
+  </div>
+</footer>
+<script src="../assets/js/main.js" defer></script>
+<script src="demo.js" defer></script>
+</body>
+</html>

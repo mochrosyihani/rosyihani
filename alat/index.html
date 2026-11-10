@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalkulator Persediaan Gudang – Moch Rosyihani</title>
+<meta name="description" content="Kalkulator gratis untuk safety stock, reorder point, nilai persediaan, dan selisih stock opname. Dihitung langsung di browser Anda.">
+<link rel="canonical" href="https://mochrosyihani.com/alat/">
+<meta name="theme-color" content="#0F2540">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="id_ID">
+<meta property="og:site_name" content="Moch Rosyihani">
+<meta property="og:title" content="Kalkulator Persediaan Gudang – Moch Rosyihani">
+<meta property="og:description" content="Kalkulator gratis untuk safety stock, reorder point, nilai persediaan, dan selisih stock opname. Dihitung langsung di browser Anda.">
+<meta property="og:url" content="https://mochrosyihani.com/alat/">
+<meta property="og:image" content="https://mochrosyihani.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/halaman.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kalkulator Persediaan Gudang","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"id","description":"Hitung safety stock, reorder point, nilai persediaan, dan selisih stock opname.","author":{"@type":"Person","name":"Moch Rosyihani","url":"https://mochrosyihani.com/"},"offers":{"@type":"Offer","price":"0","priceCurrency":"IDR"}}</script>
+</head>
+<body>
+<a class="lewati" href="#isi">Lewati ke isi</a>
+<header class="bar" id="atas">
+  <a class="monogram" href="../index.html" aria-label="Moch Rosyihani, beranda">MR</a>
+  <button class="menu-tombol" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  <nav id="menu" class="menu" aria-label="Navigasi utama">
+    <a href="../index.html#tentang">Tentang</a>
+    <a href="../index.html#perjalanan">Perjalanan</a>
+    <a href="../demo/">Demo WMS</a>
+    <a href="../alat/">Kalkulator</a>
+    <a href="../tulisan/">Tulisan</a>
+    <a href="../index.html#kontak" class="menu-kontak">Kontak</a>
+  </nav>
+</header>
+<main id="isi">
+
+<div class="bungkus">
+  <section class="judul-halaman">
+    <p class="remah"><a href="../index.html">Beranda</a> / Kalkulator</p>
+    <h1>Kalkulator persediaan gudang</h1>
+    <p class="sub">Empat perhitungan yang saya pakai untuk menjaga stok tetap akurat dan tidak kehabisan. Semua dihitung di browser Anda, tidak ada data yang dikirim ke mana pun.</p>
+  </section>
+
+  <section class="blok" aria-labelledby="h-ss">
+    <div class="blok-judul">
+      <div>
+        <h2 id="h-ss">Safety stock dan reorder point</h2>
+        <p class="rumus">Safety stock = Z × simpangan baku permintaan harian × √lead time.<br>Reorder point = rata-rata permintaan harian × lead time + safety stock.</p>
+      </div>
+      <div>
+        <form class="form" id="f-ss" onsubmit="return false">
+          <div><label for="ss-d">Rata-rata permintaan per hari</label><input id="ss-d" type="number" min="0" step="any" value="40" inputmode="decimal"><span class="bantu">Satuan barang</span></div>
+          <div><label for="ss-s">Simpangan baku permintaan harian</label><input id="ss-s" type="number" min="0" step="any" value="12" inputmode="decimal"><span class="bantu">Seberapa naik-turun permintaan</span></div>
+          <div><label for="ss-l">Lead time pengadaan (hari)</label><input id="ss-l" type="number" min="0" step="any" value="7" inputmode="decimal"><span class="bantu">Dari pesan sampai barang tiba</span></div>
+          <div><label for="ss-z">Tingkat layanan</label>
+            <select id="ss-z"><option value="1.28">90%</option><option value="1.65" selected>95%</option><option value="1.96">97,5%</option><option value="2.33">99%</option></select>
+            <span class="bantu">Peluang tidak kehabisan stok</span></div>
+        </form>
+        <div class="hasil" aria-live="polite"><dl>
+          <dt>Safety stock</dt><dd id="o-ss">–</dd>
+          <dt>Reorder point</dt><dd id="o-rop">–</dd>
+          <dt>Permintaan selama lead time</dt><dd id="o-ld">–</dd>
+        </dl><p class="catat">Pesan ulang saat stok tersedia menyentuh angka reorder point. Hasil dibulatkan ke atas.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blok" aria-labelledby="h-nilai">
+    <div class="blok-judul">
+      <div>
+        <h2 id="h-nilai">Nilai persediaan</h2>
+        <p class="rumus">Nilai = jumlah × harga per satuan, dijumlahkan untuk semua barang.</p>
+      </div>
+      <div>
+        <div class="tabel-bungkus"><table class="data" id="t-nilai">
+          <thead><tr><th>Barang</th><th class="n">Jumlah</th><th class="n">Harga satuan (Rp)</th><th class="n">Nilai (Rp)</th><th><span class="sr-only">Hapus</span></th></tr></thead>
+          <tbody></tbody>
+          <tfoot><tr><td colspan="3"><strong>Total nilai persediaan</strong></td><td class="n"><strong id="o-total">0</strong></td><td></td></tr></tfoot>
+        </table></div>
+        <div class="baris-aksi"><button type="button" class="tombol-kecil" id="tambah-nilai">Tambah baris</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blok" aria-labelledby="h-opname">
+    <div class="blok-judul">
+      <div>
+        <h2 id="h-opname">Selisih stock opname</h2>
+        <p class="rumus">Akurasi = barang yang cocok ÷ jumlah barang yang dihitung.<br>Selisih nilai = (fisik − sistem) × harga.</p>
+      </div>
+      <div>
+        <div class="tabel-bungkus"><table class="data" id="t-opname">
+          <thead><tr><th>Barang</th><th class="n">Sistem</th><th class="n">Fisik</th><th class="n">Harga (Rp)</th><th class="n">Selisih unit</th><th class="n">Selisih nilai (Rp)</th><th><span class="sr-only">Hapus</span></th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+        <div class="baris-aksi"><button type="button" class="tombol-kecil" id="tambah-opname">Tambah baris</button></div>
+        <div class="hasil" aria-live="polite"><dl>
+          <dt>Akurasi stok</dt><dd id="o-akurasi">–</dd>
+          <dt>Total selisih nilai</dt><dd id="o-selisih">–</dd>
+          <dt>Barang dengan selisih</dt><dd id="o-jml">–</dd>
+        </dl><p class="catat">Selisih bernilai negatif berarti fisik lebih sedikit dari catatan sistem. Setiap selisih perlu ditelusuri penyebabnya, bukan hanya disesuaikan.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blok" aria-labelledby="h-baca">
+    <div class="blok-judul">
+      <h2 id="h-baca">Ingin penjelasannya?</h2>
+      <div class="isi-teks"><p>Cara membaca angka-angka ini dan contoh hitungannya saya tulis di <a href="../tulisan/cara-menghitung-buffer-stock/">Cara menghitung buffer stock</a> dan <a href="../tulisan/stock-opname-akurasi-98-persen/">Stock opname yang menjaga akurasi stok</a>. Sistem lengkapnya bisa dilihat di <a href="../demo/">demo WMS</a>.</p></div>
+    </div>
+  </section>
+</div>
+</main>
+<footer class="kaki-halaman">
+  <div class="bungkus">
+    <p><a href="../index.html">Moch Rosyihani</a>, Supply Chain &amp; Warehouse Specialist. <a href="mailto:mochrosyihani@gmail.com">mochrosyihani@gmail.com</a></p>
+  </div>
+</footer>
+<script src="../assets/js/main.js" defer></script>
+<script src="kalkulator.js" defer></script>
+</body>
+</html>

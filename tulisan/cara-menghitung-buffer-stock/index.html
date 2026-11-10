@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cara menghitung buffer stock: safety stock dan reorder point – Moch Rosyihani</title>
+<meta name="description" content="Rumus safety stock dan reorder point, lengkap dengan contoh hitungan, supaya gudang tidak kehabisan barang dan tidak menumpuk stok.">
+<link rel="canonical" href="https://mochrosyihani.com/tulisan/cara-menghitung-buffer-stock/">
+<meta name="theme-color" content="#0F2540">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="id_ID">
+<meta property="og:site_name" content="Moch Rosyihani">
+<meta property="og:title" content="Cara menghitung buffer stock: safety stock dan reorder point – Moch Rosyihani">
+<meta property="og:description" content="Rumus safety stock dan reorder point, lengkap dengan contoh hitungan, supaya gudang tidak kehabisan barang dan tidak menumpuk stok.">
+<meta property="og:url" content="https://mochrosyihani.com/tulisan/cara-menghitung-buffer-stock/">
+<meta property="og:image" content="https://mochrosyihani.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/halaman.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Cara menghitung buffer stock: safety stock dan reorder point", "description": "Rumus safety stock dan reorder point, lengkap dengan contoh hitungan, supaya gudang tidak kehabisan barang dan tidak menumpuk stok.", "inLanguage": "id", "datePublished": "2026-11-09", "dateModified": "2026-11-09", "author": {"@type": "Person", "name": "Moch Rosyihani", "url": "https://mochrosyihani.com/"}, "mainEntityOfPage": "https://mochrosyihani.com/tulisan/cara-menghitung-buffer-stock/"}</script>
+</head>
+<body>
+<a class="lewati" href="#isi">Lewati ke isi</a>
+<header class="bar" id="atas">
+  <a class="monogram" href="../../index.html" aria-label="Moch Rosyihani, beranda">MR</a>
+  <button class="menu-tombol" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  <nav id="menu" class="menu" aria-label="Navigasi utama">
+    <a href="../../index.html#tentang">Tentang</a>
+    <a href="../../index.html#perjalanan">Perjalanan</a>
+    <a href="../../demo/">Demo WMS</a>
+    <a href="../../alat/">Kalkulator</a>
+    <a href="../../tulisan/">Tulisan</a>
+    <a href="../../index.html#kontak" class="menu-kontak">Kontak</a>
+  </nav>
+</header>
+<main id="isi">
+<div class="bungkus"><section class="judul-halaman">
+<p class="remah"><a href="../../index.html">Beranda</a> / <a href="../">Tulisan</a></p>
+<h1 style="max-width:24ch">Cara menghitung buffer stock: safety stock dan reorder point</h1>
+<p class="meta-artikel">Moch Rosyihani, 9 November 2026</p></section>
+<article class="artikel">
+<p>Buffer stock adalah persediaan cadangan untuk menutupi dua hal: permintaan yang naik di luar perkiraan, dan barang yang datang terlambat. Tanpa buffer, produksi bisa berhenti karena satu barang kecil habis. Terlalu banyak buffer, modal tertahan di rak. Tulisan ini menunjukkan cara menentukan angkanya dengan hitungan, bukan perasaan.</p>
+<h2>Tiga angka yang dibutuhkan</h2>
+<ul>
+<li><strong>Rata-rata permintaan per hari (d).</strong> Ambil dari data pengeluaran barang, misalnya 3 sampai 6 bulan terakhir.</li>
+<li><strong>Simpangan baku permintaan harian (σ).</strong> Ukuran seberapa naik-turun pemakaian dari hari ke hari. Spreadsheet bisa menghitungnya dengan fungsi STDEV.</li>
+<li><strong>Lead time (L).</strong> Jumlah hari dari pesan sampai barang tiba dan siap dipakai.</li>
+</ul>
+<h2>Rumusnya</h2>
+<p>Safety stock = Z × σ × √L</p>
+<p>Reorder point = (d × L) + safety stock</p>
+<p>Z adalah faktor tingkat layanan, yaitu seberapa besar peluang Anda tidak kehabisan stok selama menunggu barang datang. Nilai yang umum dipakai: 1,28 untuk 90%, 1,65 untuk 95%, 1,96 untuk 97,5%, dan 2,33 untuk 99%.</p>
+<h2>Contoh hitungan</h2>
+<div class="contoh">
+<p>Sebuah barang dipakai rata-rata 40 unit per hari, simpangan bakunya 12 unit, lead time 7 hari, dan target layanan 95%.</p>
+<p>Safety stock = 1,65 × 12 × √7 = 1,65 × 12 × 2,646 = 52,4, dibulatkan ke atas menjadi <strong>53 unit</strong>.</p>
+<p>Permintaan selama lead time = 40 × 7 = 280 unit.</p>
+<p>Reorder point = 280 + 53 = <strong>333 unit</strong>.</p>
+</div>
+<p>Artinya, begitu stok yang tersedia menyentuh 333 unit, barang harus dipesan. Selama 7 hari menunggu, rata-rata 280 unit terpakai, dan 53 unit cadangan menutupi lonjakan permintaan. Angka ini bisa dicoba dengan data sendiri di <a href="../../alat/">kalkulator persediaan</a>.</p>
+<h2>Hal yang sering terlewat</h2>
+<ul>
+<li><strong>Lead time ikut bervariasi.</strong> Kalau pemasok sering terlambat, pakai lead time yang realistis, bukan yang dijanjikan.</li>
+<li><strong>Stok yang dihitung adalah stok tersedia.</strong> Barang yang sudah diminta tetapi belum diambil harus sudah dikurangi, atau reorder point akan terlambat terpicu.</li>
+<li><strong>Tinjau berkala.</strong> Pemakaian berubah mengikuti produksi. Hitung ulang tiap kuartal, atau lebih sering untuk barang yang pemakaiannya berubah cepat.</li>
+<li><strong>Rumus ini mengasumsikan permintaan yang cukup stabil.</strong> Untuk barang yang jarang dipakai atau dibeli per proyek, pertimbangan manual tetap diperlukan.</li>
+</ul>
+<h2>Supaya tidak bergantung pada ingatan</h2>
+<p>Menghitung sekali itu mudah. Yang sulit adalah memantaunya setiap hari untuk ribuan barang. Karena itu perhitungan buffer paling bermanfaat bila dihubungkan ke sistem yang memberi peringatan otomatis saat stok mendekati batas. Contoh tampilannya ada di <a href="../../demo/">demo WMS</a>.</p>
+
+<div class="lanjut"><p>Ada pertanyaan atau ingin berdiskusi tentang gudang dan persediaan? Hubungi saya di <a href="mailto:mochrosyihani@gmail.com">mochrosyihani@gmail.com</a> atau lewat <a href="https://www.linkedin.com/in/moch-rosyihani-iyan-4621b0254" rel="me noopener">LinkedIn</a>.</p></div>
+</article></div></main>
+<footer class="kaki-halaman">
+  <div class="bungkus">
+    <p><a href="../../index.html">Moch Rosyihani</a>, Supply Chain &amp; Warehouse Specialist. <a href="mailto:mochrosyihani@gmail.com">mochrosyihani@gmail.com</a></p>
+  </div>
+</footer>
+<script src="../../assets/js/main.js" defer></script>
+</body>
+</html>
