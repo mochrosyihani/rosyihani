@@ -56,3 +56,18 @@ section.kartu{margin-bottom:clamp(20px,3vw,32px)}
 @media (max-width:860px){.kpi6{padding:4px 16px}.kpi6>div{border-bottom:0;padding:16px 10px 12px 0;margin-right:10px}.kpi6>div:nth-child(2n){border-right:0;margin-right:0}.kpi6>div:nth-child(odd){border-right:1px solid rgba(255,255,255,.12)}.kartu{padding:18px 16px 20px}.saring-dash .stempel{margin-left:0}}
 
 @media (max-width:1100px){.kpi6>div{border-bottom:0!important}}
+.petunjuk{display:none;margin:8px 0 0;font-size:.8rem;color:#5A6678}
+@media (max-width:560px){
+  .petunjuk{display:block}
+  #tren-ket{font-size:.88rem;margin-bottom:12px}
+  .kartu .legenda{font-size:.85rem;gap:16px}
+  .kartu h2{font-size:1.1rem}
+}
+.kartu table.data td.n{white-space:nowrap}
+@media (max-width:560px){
+  .kartu table.data{font-size:.86rem}
+  .kartu table.data td,.kartu table.data th{padding-right:8px}
+  .kartu table.data td.n,.kartu table.data th.n{padding-right:8px}
+  .kartu table.data td:first-child{min-width:128px}
+  .kartu table.data th{font-size:.78rem}
+}

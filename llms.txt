@@ -19,6 +19,7 @@
 
 ## Halaman
 - [Demo sistem WMS (data fiktif, termasuk uji simulasi 10.000 SKU)](https://mochrosyihani.github.io/rosyihani/demo/)
+- [Cara saya bekerja dan memimpin tim di gudang dan produksi](https://mochrosyihani.github.io/rosyihani/cara-kerja/)
 - [Kalkulator persediaan: safety stock, reorder point, nilai persediaan, selisih opname](https://mochrosyihani.github.io/rosyihani/alat/)
 - [Tulisan tentang gudang dan persediaan](https://mochrosyihani.github.io/rosyihani/tulisan/)
 - [Cara menghitung buffer stock](https://mochrosyihani.github.io/rosyihani/tulisan/cara-menghitung-buffer-stock/)

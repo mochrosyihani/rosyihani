@@ -82,16 +82,16 @@
   function grafik(){
     var n=+$('f-per').value,k=[],m=[];
     for(var i=12-n;i<12;i++){var tk=0,tm=0;for(var c=0;c<JENIS.length;c++){if(KAT>=0&&c!==KAT)continue;tk+=WK[c].k[i];tm+=WK[c].m[i]}k.push(tk);m.push(tm)}
-    var gw=$('gb').clientWidth||800,mob=gw<560,W=mob?520:800,H=mob?300:280,fs=mob?15:12,L=mob?60:56,R=16,T=18,B=mob?38:34,mx=Math.max.apply(null,k.concat(m)),step=mx>6000?2000:mx>2500?1000:mx>1200?500:200,max=Math.ceil(mx*1.05/step)*step,min=Math.max(0,Math.floor(Math.min.apply(null,k.concat(m))*0.85/step)*step),N=n-1;
+    var gw=$('gb').clientWidth||800,mob=gw<560,W=mob?Math.max(280,Math.round(gw)):800,H=mob?Math.round(Math.max(280,gw*0.9)):280,fs=mob?12:12,L=mob?40:56,R=mob?12:16,T=mob?14:18,B=mob?30:34,mx=Math.max.apply(null,k.concat(m)),step=mx>6000?2000:mx>2500?1000:mx>1200?500:200,max=Math.ceil(mx*1.05/step)*step,min=Math.max(0,Math.floor(Math.min.apply(null,k.concat(m))*0.85/step)*step),N=n-1;
     function X(i){return L+(W-L-R)*i/N}function Y(v){return T+(H-T-B)*(1-(v-min)/(max-min))}
     var s='';
     for(var g=0;g<=4;g++){var v=min+(max-min)*g/4,y=Y(v);
       s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="#D6DDE6" stroke-width="1"/>';
-      s+='<text x="'+(L-8)+'" y="'+(y+4)+'" text-anchor="end" font-size="'+fs+'" fill="#3A4656" font-family="Inter,Arial,sans-serif">'+fmt.format(v)+'</text>'}
-    for(var i=0;i<n;i++){s+='<text x="'+X(i)+'" y="'+(H-12)+'" text-anchor="middle" font-size="'+fs+'" fill="#3A4656" font-family="Inter,Arial,sans-serif">M'+(i+1)+'</text>'}
+      s+='<text x="'+(L-8)+'" y="'+(y+4)+'" text-anchor="end" font-size="'+fs+'" fill="#3A4656" font-family="Inter,Arial,sans-serif">'+(mob?(v/1000).toFixed(v%1000?1:0).replace('.',',')+' rb':fmt.format(v))+'</text>'}
+    for(var i=0;i<n;i++){if(mob&&n>6&&i%2)continue;s+='<text x="'+X(i)+'" y="'+(H-12)+'" text-anchor="middle" font-size="'+fs+'" fill="#3A4656" font-family="Inter,Arial,sans-serif">M'+(i+1)+'</text>'}
     function path(a,c,area){var p='';for(var i=0;i<n;i++)p+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(a[i]).toFixed(1);
       var ar=area?'<path d="'+p+'L'+X(n-1).toFixed(1)+' '+Y(min)+'L'+X(0).toFixed(1)+' '+Y(min)+'Z" fill="'+c+'" fill-opacity=".07"/>':'';
-      var dots='';for(var i=0;i<n;i++)dots+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(a[i]).toFixed(1)+'" r="3" fill="'+c+'"><title>Minggu '+(i+1)+': '+fmt.format(a[i])+' unit</title></circle>';
+      var dots='';for(var i=0;i<n;i++)dots+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(a[i]).toFixed(1)+'" r="'+(mob?2.6:3)+'" fill="'+c+'"><title>Minggu '+(i+1)+': '+fmt.format(a[i])+' unit</title></circle>';
       return ar+'<path d="'+p+'" fill="none" stroke="'+c+'" stroke-width="2.4" stroke-linejoin="round"/>'+dots}
     s+=path(m,'#2A7A8A',true)+path(k,'#0F2540',false);
     $('grafik').setAttribute('viewBox','0 0 '+W+' '+H);$('grafik').innerHTML=s;
@@ -110,7 +110,7 @@
       var x=GR.X(i);svg.insertAdjacentHTML('beforeend','<g class="cross"><line x1="'+x+'" x2="'+x+'" y1="18" y2="'+(GR.H-GR.B)+'" stroke="#0F2540" stroke-opacity=".35" stroke-dasharray="3 3"/><circle cx="'+x+'" cy="'+GR.Y(GR.k[i])+'" r="5" fill="#fff" stroke="#0F2540" stroke-width="2"/><circle cx="'+x+'" cy="'+GR.Y(GR.m[i])+'" r="5" fill="#fff" stroke="#2A7A8A" stroke-width="2"/></g>');
       tip.innerHTML='<b>Minggu '+(i+1)+'</b><span><i style="background:#0F2540"></i>Keluar '+fmt.format(GR.k[i])+'</span><span><i style="background:#2A7A8A"></i>Masuk '+fmt.format(GR.m[i])+'</span>';
       tip.hidden=false;var bw=gb.clientWidth,left=x/GR.W*bw;tip.style.left=Math.min(Math.max(left,70),bw-70)+'px'});
-    svg.addEventListener('pointerleave',lepas)})();
+    svg.addEventListener('pointerleave',function(e){if(e.pointerType!=='touch')lepas()});svg.addEventListener('pointerdown',function(e){if(e.pointerType==='touch')svg.dispatchEvent(new PointerEvent('pointermove',{clientX:e.clientX,clientY:e.clientY,pointerType:'touch'}))});document.addEventListener('pointerdown',function(e){if(!gb.contains(e.target))lepas()})})();
 
   function batang(){
     var tot=[],mx=0;for(var c=0;c<JENIS.length;c++)tot.push(0);
