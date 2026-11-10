@@ -43,7 +43,7 @@ h1,h2,h3{font-family:var(--tampil);color:var(--navy);margin:0;font-weight:600}
 /* Hero */
 .hero{padding:clamp(48px,9vw,112px) 0 clamp(40px,7vw,88px)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,5vw,72px);align-items:center}
-.nama{font-size:clamp(3rem,9.2vw,7.6rem);line-height:.95;letter-spacing:-.035em;font-weight:600}
+.nama{font-size:clamp(2.6rem,6vw,5.2rem);line-height:1;letter-spacing:-.03em;font-weight:600}
 .nama span{display:block}
 .garis-hero{height:3px;width:clamp(72px,12vw,148px);background:var(--teal);margin:clamp(24px,3.5vw,40px) 0 22px;transform-origin:left;animation:tarik .9s .15s cubic-bezier(.2,.7,.2,1) both}
 @keyframes tarik{from{transform:scaleX(0)}to{transform:scaleX(1)}}
@@ -142,8 +142,8 @@ h1,h2,h3{font-family:var(--tampil);color:var(--navy);margin:0;font-weight:600}
 /* Responsif */
 @media (max-width:860px){
   .hero-grid{grid-template-columns:1fr;align-items:start}
-  .foto{order:-1;max-width:190px}
-  .nama{font-size:clamp(2.8rem,14vw,4.6rem)}
+  .foto{order:-1;max-width:190px;justify-self:start}
+  .nama{font-size:clamp(2.4rem,11vw,3.6rem)}
   .fakta dl{grid-template-columns:1fr 1fr}
   .fakta dl>div{border-right:0;margin-right:0;padding:20px 12px 20px 0;border-bottom:1px solid var(--garis)}
   .fakta dl>div:nth-last-child(-n+2){border-bottom:0}
