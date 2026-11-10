@@ -82,23 +82,35 @@
   function grafik(){
     var n=+$('f-per').value,k=[],m=[];
     for(var i=12-n;i<12;i++){var tk=0,tm=0;for(var c=0;c<JENIS.length;c++){if(KAT>=0&&c!==KAT)continue;tk+=WK[c].k[i];tm+=WK[c].m[i]}k.push(tk);m.push(tm)}
-    var W=800,H=280,L=56,R=16,T=18,B=34,mx=Math.max.apply(null,k.concat(m)),step=mx>6000?2000:mx>2500?1000:mx>1200?500:200,max=Math.ceil(mx*1.05/step)*step,min=Math.max(0,Math.floor(Math.min.apply(null,k.concat(m))*0.85/step)*step),N=n-1;
+    var gw=$('gb').clientWidth||800,mob=gw<560,W=mob?520:800,H=mob?300:280,fs=mob?15:12,L=mob?60:56,R=16,T=18,B=mob?38:34,mx=Math.max.apply(null,k.concat(m)),step=mx>6000?2000:mx>2500?1000:mx>1200?500:200,max=Math.ceil(mx*1.05/step)*step,min=Math.max(0,Math.floor(Math.min.apply(null,k.concat(m))*0.85/step)*step),N=n-1;
     function X(i){return L+(W-L-R)*i/N}function Y(v){return T+(H-T-B)*(1-(v-min)/(max-min))}
     var s='';
     for(var g=0;g<=4;g++){var v=min+(max-min)*g/4,y=Y(v);
       s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y+'" y2="'+y+'" stroke="#D6DDE6" stroke-width="1"/>';
-      s+='<text x="'+(L-8)+'" y="'+(y+4)+'" text-anchor="end" font-size="12" fill="#3A4656" font-family="Inter,Arial,sans-serif">'+fmt.format(v)+'</text>'}
-    for(var i=0;i<n;i++){s+='<text x="'+X(i)+'" y="'+(H-12)+'" text-anchor="middle" font-size="12" fill="#3A4656" font-family="Inter,Arial,sans-serif">M'+(i+1)+'</text>'}
+      s+='<text x="'+(L-8)+'" y="'+(y+4)+'" text-anchor="end" font-size="'+fs+'" fill="#3A4656" font-family="Inter,Arial,sans-serif">'+fmt.format(v)+'</text>'}
+    for(var i=0;i<n;i++){s+='<text x="'+X(i)+'" y="'+(H-12)+'" text-anchor="middle" font-size="'+fs+'" fill="#3A4656" font-family="Inter,Arial,sans-serif">M'+(i+1)+'</text>'}
     function path(a,c,area){var p='';for(var i=0;i<n;i++)p+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(a[i]).toFixed(1);
       var ar=area?'<path d="'+p+'L'+X(n-1).toFixed(1)+' '+Y(min)+'L'+X(0).toFixed(1)+' '+Y(min)+'Z" fill="'+c+'" fill-opacity=".07"/>':'';
       var dots='';for(var i=0;i<n;i++)dots+='<circle cx="'+X(i).toFixed(1)+'" cy="'+Y(a[i]).toFixed(1)+'" r="3" fill="'+c+'"><title>Minggu '+(i+1)+': '+fmt.format(a[i])+' unit</title></circle>';
       return ar+'<path d="'+p+'" fill="none" stroke="'+c+'" stroke-width="2.4" stroke-linejoin="round"/>'+dots}
     s+=path(m,'#2A7A8A',true)+path(k,'#0F2540',false);
-    $('grafik').innerHTML=s;
+    $('grafik').setAttribute('viewBox','0 0 '+W+' '+H);$('grafik').innerHTML=s;
+    GR={k:k,m:m,n:n,L:L,R:R,W:W,H:H,B:B,Y:Y,X:X};
     var tk=0,tm=0;for(var i=0;i<n;i++){tk+=k[i];tm+=m[i]}
     var dl=k[n-1]-k[n-2],dp=k[n-2]?dl/k[n-2]*100:0;
     $('tren-ket').textContent='Total '+fmt.format(tk)+' unit keluar dan '+fmt.format(tm)+' unit masuk dalam '+n+' minggu. Keluar minggu terakhir '+(dl>=0?'naik ':'turun ')+Math.abs(dp).toFixed(1).replace('.',',')+'% dari minggu sebelumnya.';
   }
+
+  var GR=null;
+  (function(){var svg=$('grafik'),tip=$('tip'),gb=$('gb');
+    function lepas(){tip.hidden=true;var g=svg.querySelector('.cross');if(g)g.remove()}
+    svg.addEventListener('pointermove',function(e){if(!GR)return;var r=svg.getBoundingClientRect(),px=(e.clientX-r.left)/r.width*GR.W;
+      var i=Math.round((px-GR.L)/(GR.W-GR.L-GR.R)*(GR.n-1));i=Math.max(0,Math.min(GR.n-1,i));
+      var old=svg.querySelector('.cross');if(old)old.remove();
+      var x=GR.X(i);svg.insertAdjacentHTML('beforeend','<g class="cross"><line x1="'+x+'" x2="'+x+'" y1="18" y2="'+(GR.H-GR.B)+'" stroke="#0F2540" stroke-opacity=".35" stroke-dasharray="3 3"/><circle cx="'+x+'" cy="'+GR.Y(GR.k[i])+'" r="5" fill="#fff" stroke="#0F2540" stroke-width="2"/><circle cx="'+x+'" cy="'+GR.Y(GR.m[i])+'" r="5" fill="#fff" stroke="#2A7A8A" stroke-width="2"/></g>');
+      tip.innerHTML='<b>Minggu '+(i+1)+'</b><span><i style="background:#0F2540"></i>Keluar '+fmt.format(GR.k[i])+'</span><span><i style="background:#2A7A8A"></i>Masuk '+fmt.format(GR.m[i])+'</span>';
+      tip.hidden=false;var bw=gb.clientWidth,left=x/GR.W*bw;tip.style.left=Math.min(Math.max(left,70),bw-70)+'px'});
+    svg.addEventListener('pointerleave',lepas)})();
 
   function batang(){
     var tot=[],mx=0;for(var c=0;c<JENIS.length;c++)tot.push(0);
@@ -128,13 +140,21 @@
     $('t-opname').tBodies[0].innerHTML=h;
   }
 
+  var SPK=[[.2,.28,.25,.35,.4,.38,.5,.55,.6,.58,.7,.74],[.7,.66,.68,.6,.58,.55,.52,.5,.46,.44,.42,.4],[.5,.55,.52,.6,.62,.66,.7,.72,.78,.8,.84,.9],[.8,.72,.75,.66,.6,.58,.5,.46,.42,.4,.34,.3],[.4,.5,.46,.55,.5,.6,.52,.5,.56,.48,.5,.46],[.3,.34,.4,.38,.46,.5,.48,.56,.6,.58,.66,.7]];
+  function spark(){var el=document.querySelectorAll('#kpi>div');
+    for(var q=0;q<el.length;q++){var a=SPK[q],p='';for(var i=0;i<12;i++)p+=(i?'L':'M')+(i*(100/11)).toFixed(1)+' '+(26-a[i]*22).toFixed(1);
+      var h='<svg class="spark" viewBox="0 0 100 28" preserveAspectRatio="none" aria-hidden="true"><path d="'+p+'" fill="none" stroke="#7FC4CF" stroke-width="1.8" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>',o=el[q].querySelector('.spark');
+      if(o)o.outerHTML=h;else el[q].insertAdjacentHTML('beforeend',h)}}
+  function waktu(){var d=new Date(),b=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+    $('stempel').textContent='Data fiktif, dibuat '+d.getDate()+' '+b[d.getMonth()]+' '+d.getFullYear()+', '+String(d.getHours()).padStart(2,'0')+'.'+String(d.getMinutes()).padStart(2,'0')}
   function segar(){
     $('f-info').textContent=KAT<0?'Menampilkan semua kategori.':'Menampilkan kategori '+JENIS[KAT][1]+'. Pilih "Semua kategori" untuk kembali.';
-    kpi();grafik();batang();daftar();
+    kpi();spark();grafik();batang();daftar();
   }
   (function(){var o='',sel=$('f-kat');for(var c=0;c<JENIS.length;c++)o+='<option value="'+c+'">'+JENIS[c][1]+'</option>';sel.insertAdjacentHTML('beforeend',o);
     sel.addEventListener('change',function(){KAT=this.value===''?-1:+this.value;segar();saring()});
     $('f-per').addEventListener('change',grafik);
+    var lw=$('gb').clientWidth<560;window.addEventListener('resize',function(){var n=$('gb').clientWidth<560;if(n!==lw){lw=n;grafik()}});
     $('batang').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var c=+b.getAttribute('data-k');KAT=KAT===c?-1:c;sel.value=KAT<0?'':KAT;segar();saring()})})();
 
   /* Tabel dan pencarian */
@@ -185,5 +205,5 @@
     },30);
   });
 
-  segar();opname();saring();
+  waktu();segar();opname();saring();
 })();

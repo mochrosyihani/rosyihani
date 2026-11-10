@@ -52,6 +52,7 @@
     <div><label for="f-kat">Kategori</label><select id="f-kat"><option value="">Semua kategori</option></select></div>
     <div><label for="f-per">Periode grafik</label><select id="f-per"><option value="4">4 minggu</option><option value="8">8 minggu</option><option value="12" selected>12 minggu</option></select></div>
     <p class="ket" id="f-info" aria-live="polite"></p>
+    <p class="stempel" id="stempel"></p>
   </div>
 
   <div class="kpi kpi6" id="kpi" aria-label="Ringkasan kondisi gudang">
@@ -70,13 +71,13 @@
   </div>
 
   <div class="dash-grid">
-    <section class="panel" aria-labelledby="h-tren">
+    <section class="panel kartu" aria-labelledby="h-tren">
       <h2 id="h-tren">Barang keluar dan masuk</h2>
       <p class="ket" id="tren-ket"></p>
-      <svg id="grafik" class="grafik" viewBox="0 0 800 280" role="img" aria-label="Grafik garis barang keluar dan masuk per minggu"></svg>
+      <div class="grafik-bungkus" id="gb"><svg id="grafik" class="grafik" viewBox="0 0 800 280" role="img" aria-label="Grafik garis barang keluar dan masuk per minggu"></svg><div class="tip" id="tip" hidden></div></div>
       <div class="legenda"><span><i style="background:#0F2540"></i>Barang keluar</span><span><i style="background:#2A7A8A"></i>Barang masuk</span></div>
     </section>
-    <section class="panel" aria-labelledby="h-kat">
+    <section class="panel kartu" aria-labelledby="h-kat">
       <h2 id="h-kat">Nilai persediaan per kategori</h2>
       <p class="ket">Kategori dengan modal terbesar. Klik satu batang untuk menyaring seluruh dashboard.</p>
       <ul class="batang" id="batang"></ul>
@@ -84,13 +85,13 @@
   </div>
 
   <div class="dash-grid dua">
-    <section class="panel" aria-labelledby="h-pesan">
+    <section class="panel kartu" aria-labelledby="h-pesan">
       <h2 id="h-pesan">Perlu dipesan lebih dulu</h2>
       <p class="ket">Barang di bawah buffer yang stoknya paling cepat habis.</p>
       <div class="tabel-bungkus"><table class="data" id="t-pesan">
         <thead><tr><th>Barang</th><th class="n">Stok</th><th class="n">Cukup</th><th class="n">Saran pesan</th></tr></thead><tbody></tbody></table></div>
     </section>
-    <section class="panel" aria-labelledby="h-diam">
+    <section class="panel kartu" aria-labelledby="h-diam">
       <h2 id="h-diam">Barang tidak bergerak</h2>
       <p class="ket">Tidak ada pemakaian lebih dari 90 hari. Diurutkan dari modal yang paling banyak tertahan.</p>
       <div class="tabel-bungkus"><table class="data" id="t-diam">
@@ -98,14 +99,14 @@
     </section>
   </div>
 
-  <section class="panel" aria-labelledby="h-opname">
+  <section class="panel kartu" aria-labelledby="h-opname">
     <h2 id="h-opname">Hasil stock opname terakhir</h2>
     <p class="ket">Dari 360 barang yang dihitung, lima barang selisih. Setiap selisih ditelusuri penyebabnya sebelum catatan sistem disesuaikan.</p>
     <div class="tabel-bungkus"><table class="data" id="t-opname">
       <thead><tr><th>Barang</th><th class="n">Sistem</th><th class="n">Fisik</th><th class="n">Selisih</th><th class="n">Nilai selisih</th></tr></thead><tbody></tbody></table></div>
   </section>
 
-  <section class="panel" aria-labelledby="h-buffer">
+  <section class="panel kartu" aria-labelledby="h-buffer">
     <h2 id="h-buffer">Cari barang dan pantau statusnya</h2>
     <p class="ket">Cari barang berdasarkan kode atau nama. Status dihitung otomatis dari stok, batas buffer, dan rata-rata pemakaian per hari.</p>
     <div class="alat-bar">

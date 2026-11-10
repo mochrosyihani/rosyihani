@@ -26,3 +26,33 @@
 table.data small{color:#5A6678;font-size:.78rem}
 @media (max-width:1100px){.kpi6{grid-template-columns:repeat(3,minmax(0,1fr))}.kpi6>div:nth-child(3n){border-right:0;margin-right:0}.kpi6>div{border-bottom:1px solid var(--garis)}.kpi6>div:nth-last-child(-n+3){border-bottom:0}}
 @media (max-width:860px){.dash-grid,.dash-grid.dua{grid-template-columns:minmax(0,1fr)}.kpi6{grid-template-columns:1fr 1fr}.kpi6>div,.kpi6>div:nth-child(3n){border-right:0;margin-right:0;border-bottom:1px solid var(--garis)}.kpi6>div:nth-last-child(-n+2){border-bottom:0}.saring-dash select{min-width:0;width:100%}.saring-dash>div{flex:1 1 140px}.batang button{grid-template-columns:88px minmax(0,1fr) 104px}}
+
+/* Tahap desain: pusat kendali */
+.saring-dash .stempel{margin:0 0 8px auto;font-size:.8rem;color:#5A6678;font-variant-numeric:tabular-nums}
+.kpi6{background:var(--navy);border:0;padding:6px 8px 6px 24px;margin-bottom:14px}
+.kpi6>div{position:relative;border-right:1px solid rgba(255,255,255,.12);border-bottom:0;padding:22px 14px 16px 0;margin-right:16px;margin-left:0}
+.kpi6>div:last-child{border-right:0}
+.kpi6 b{color:#fff;font-weight:500;font-size:clamp(1.25rem,2vw,1.75rem)}
+.kpi6 span{color:#C9D4E2;font-size:.85rem;margin-top:2px}
+.kpi6 small{color:#8FA3BD}
+.kpi6 .spark{order:4;display:block;width:100%;height:26px;margin-top:12px}
+.bar-status-isi{height:14px;gap:3px;background:transparent}
+.bar-status-isi .seg{border-radius:2px}
+.kartu{background:var(--putih);border:1px solid var(--garis);padding:22px 24px 24px;margin-bottom:0}
+.dash-grid{margin-bottom:clamp(20px,3vw,32px);gap:clamp(20px,3vw,32px)}
+section.kartu{margin-bottom:clamp(20px,3vw,32px)}
+.dash-grid>.kartu{margin-bottom:0}
+.kartu h2{font-size:1.15rem}
+.kartu .grafik{border:0;background:transparent}
+.kartu table.data th{font-weight:600;font-size:.82rem;color:#5A6678;border-bottom:1px solid var(--navy)}
+.grafik-bungkus{position:relative}
+.grafik{touch-action:pan-y}
+.tip{position:absolute;top:6px;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:.82rem;line-height:1.5;padding:8px 12px;pointer-events:none;display:flex;flex-direction:column;white-space:nowrap}
+.tip[hidden]{display:none}
+.tip b{font-weight:600;margin-bottom:2px}
+.tip i{display:inline-block;width:8px;height:8px;margin-right:7px;border-radius:50%}
+.batang button.aktif{box-shadow:inset 3px 0 0 var(--teal)}
+@media (max-width:1100px){.kpi6>div{border-bottom:0;margin-right:14px}.kpi6>div:nth-child(3n){border-right:0}.kpi6{padding-left:20px}}
+@media (max-width:860px){.kpi6{padding:4px 16px}.kpi6>div{border-bottom:0;padding:16px 10px 12px 0;margin-right:10px}.kpi6>div:nth-child(2n){border-right:0;margin-right:0}.kpi6>div:nth-child(odd){border-right:1px solid rgba(255,255,255,.12)}.kartu{padding:18px 16px 20px}.saring-dash .stempel{margin-left:0}}
+
+@media (max-width:1100px){.kpi6>div{border-bottom:0!important}}
