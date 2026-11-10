@@ -103,3 +103,6 @@ table.data input:focus{outline:2px solid var(--teal);outline-offset:1px}
   .form{grid-template-columns:1fr}
 }
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.bagikan{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:2.2em;text-decoration:none}
+.bagikan .tombol-kecil{text-decoration:none;display:inline-block}
+.bagikan .tombol-polos{font-size:.95rem;color:var(--navy)}
